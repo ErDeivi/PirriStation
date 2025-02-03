@@ -1,0 +1,17 @@
+/* Establecer el fondo de la aplicación */
+.root {
+    -fx-background-color: aquamarine; /* Fondo color aquamarine */
+    -fx-text-fill: black; /* Letra negra */
+}
+
+/* Estilo general para los botones */
+.button {
+    -fx-background-color: yellow; /* Color de fondo amarillo */
+    -fx-text-fill: black; /* Letra negra en los botones */
+    -fx-background-radius: 50; /* Bordes redondeados */
+}
+
+/* Si quieres estilizar otros elementos de texto (como etiquetas) */
+.label {
+    -fx-text-fill: black; /* Letra negra para etiquetas */
+}
