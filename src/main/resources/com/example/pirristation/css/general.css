@@ -1,17 +1,82 @@
-/* Establecer el fondo de la aplicación */
+/* Estilos generales */
 .root {
-    -fx-background-color: aquamarine; /* Fondo color aquamarine */
-    -fx-text-fill: black; /* Letra negra */
+    -fx-font-family: "Arial";
+    -fx-background-color: linear-gradient(to bottom, #74ebd5, #acb6e5);
 }
 
-/* Estilo general para los botones */
+/* Estilo para botones */
 .button {
-    -fx-background-color: yellow; /* Color de fondo amarillo */
-    -fx-text-fill: black; /* Letra negra en los botones */
-    -fx-background-radius: 50; /* Bordes redondeados */
+    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0,0,3 );
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
 }
 
-/* Si quieres estilizar otros elementos de texto (como etiquetas) */
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #2575fc, #6a11cb);
+}
+
+/* Estilo para campos de texto */
+.text-field, .password-field {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 8px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #6a11cb;
+    -fx-effect: dropshadow( gaussian , rgba(106, 17, 203, 0.5) , 6,0,0,3 );
+}
+
+/* Estilo para etiquetas */
 .label {
-    -fx-text-fill: black; /* Letra negra para etiquetas */
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+/* Estilo para paneles */
+.pane {
+    -fx-background-color: white;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.15) , 15,0,0,7 );
+}
+
+/* Estilo para la barra de menú */
+.menu-bar {
+    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.menu {
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-background-color: white;
+    -fx-text-fill: #333;
+}
+
+.menu-item:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Estilo para listas y tablas */
+.list-view, .table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 15px;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #d3e0ff;
 }
