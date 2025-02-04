@@ -20,7 +20,7 @@ public class App extends Application {
         primaryStage = stage; // Inicializar el escenario principal
 
         // Cargar la primera escena
-        setRoot("listadoArticulos"); // Cambiar a la vista de listados
+        setRoot("modificarVideojuego"); // Cambiar a la vista de listados
         stage.setTitle("App");
         stage.show();
     }
