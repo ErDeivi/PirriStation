@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import com.example.pirristation.Modelo.Videojuego;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,13 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App extends Application {
+
     private static Stage primaryStage; // Almacenar el escenario principal
+    private static Videojuego videojuegoModificar;
+
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage; // Inicializar el escenario principal
 
         // Cargar la primera escena
-        setRoot("modificarVideojuego"); // Cambiar a la vista de listados
+        setRoot("inicio"); // Cambiar a la vista de listados
         stage.setTitle("App");
         stage.show();
     }
@@ -44,4 +47,13 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
+    public static void setVideojuegoModificar(Videojuego videojuego) {
+        videojuegoModificar = videojuego;
+    }
+
+    public static Videojuego getVideojuegoModificar() {
+        return videojuegoModificar;
+    }
+
 }

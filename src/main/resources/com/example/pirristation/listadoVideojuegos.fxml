@@ -78,12 +78,13 @@
          <children>
             <TableView fx:id="tablaArticulos" prefHeight="233.0" prefWidth="1037.0">
                <columns>
-                  <TableColumn fx:id="colCodigo" prefWidth="64.79998779296875" text="ID" />
-                  <TableColumn fx:id="colDenominacion" prefWidth="167.20001220703125" text="Nombre" />
-                  <TableColumn fx:id="colPrecio" prefWidth="138.3999786376953" text="Consola" />
-                  <TableColumn fx:id="colCategoria" prefWidth="140.800048828125" text="Genero" />
-                  <TableColumn fx:id="colUnidadesVendidas" prefWidth="147.199951171875" text="Publicado" />
-                  <TableColumn fx:id="colStock" prefWidth="379.19989013671875" text="Precio" />
+                  <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre" />
+                  <TableColumn fx:id="colPlataforma" prefWidth="100.0" text="Plataforma" />
+                  <TableColumn fx:id="colGenero" prefWidth="100.0" text="Género" />
+                  <TableColumn fx:id="colPublicado" prefWidth="100.0" text="Publicado" />
+                  <TableColumn fx:id="colPrecio" prefWidth="100.0" text="Precio" />
+                  <TableColumn fx:id="colVentas" prefWidth="100.0" text="Ventas" />
+                  <TableColumn fx:id="colBandaSonora" prefWidth="150.0" text="Banda Sonora" />
                </columns>
             </TableView>
          </children>

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="728.0" stylesheets="@css/general.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectoneodatis.controladores.FiltrosControlador">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="728.0" stylesheets="@css/general.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pirristation.Controladores.FiltrosControlador">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,66 +29,64 @@
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
          <children>
             <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="25.0" styleClass="filtroslabel" text="Filtros" />
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Código">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="ID">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="codigo">
+            <TextField fx:id="tfID">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Denominación">
+            <Label text="Nombre">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="denominacion">
+            <TextField fx:id="tfNombre">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Precio venta al Publico">
+            <Label text="Consola">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="pvp">
+            <TextField fx:id="tfConsola">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Categoría">
+            <Label text="Género">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="categoria">
+            <TextField fx:id="tfGenero">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Unidades vendidas">
+            <Label text="Publicado">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="uv">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Stock">
+            <CheckBox fx:id="cBPublicado" mnemonicParsing="false" text="Si/No" />
+            <Label text="Precio">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="stock">
+            <TextField fx:id="tfPrecio">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
+            <Label text="Ventas" />
+            <TextField fx:id="tfVentas" />
             <Button fx:id="buscar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buscarOnAction" text="Buscar">
                <VBox.margin>
                   <Insets top="10.0" />

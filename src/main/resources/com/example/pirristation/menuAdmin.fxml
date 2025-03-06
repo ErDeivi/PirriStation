@@ -28,19 +28,9 @@
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <children>
             <Label fx:id="title" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="276.0" text="Menu Administrador" />
-            <Button fx:id="gestionarArticulos" mnemonicParsing="false" onAction="#gestionarArticulosOnAction" prefHeight="36.0" prefWidth="200.0" text="Gestionar artículos">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Button>
             <Button fx:id="gestionarVideojuego" mnemonicParsing="false" onAction="#gestionarVideojuegoOnAction" prefHeight="36.0" prefWidth="200.0" text="Gestionar videojuegos">
                <VBox.margin>
                   <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="gestionarDesarrolladora" mnemonicParsing="false" onAction="#gestionarDesarrolladoraOnAction" prefHeight="37.0" prefWidth="215.0" text="Gestionar desarrolladoras">
-               <VBox.margin>
-                  <Insets top="15.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="gestionarBandaSonora" mnemonicParsing="false" onAction="#gestionarBandaSonoraOnAction" prefHeight="37.0" prefWidth="224.0" text="Gestionar bandas sonoras">
@@ -49,6 +39,11 @@
                </VBox.margin>
             </Button>
             <Button fx:id="exportarBD" mnemonicParsing="false" onAction="#exportarBD" prefHeight="37.0" prefWidth="224.0" text="Exportar base de datos">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="importarBD" mnemonicParsing="false" onAction="#importarBD" prefHeight="37.0" prefWidth="224.0" text="Importar base de datos">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
