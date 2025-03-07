@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class CrearVideojuegoControlador implements Initializable {
     @FXML
-    private TextField id,nombre,consola,genero,precio,ventas;
+    private TextField nombre,consola,genero,precio,ventas;
     @FXML
     private ComboBox<String> bandaSonora;
     @FXML
@@ -141,7 +141,6 @@ public class CrearVideojuegoControlador implements Initializable {
     }
 
     private void limpiarCampos() {
-        id.clear();
         nombre.clear();
         consola.clear();
         genero.clear();

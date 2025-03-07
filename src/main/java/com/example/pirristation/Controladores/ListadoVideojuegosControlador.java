@@ -25,19 +25,13 @@ public class ListadoVideojuegosControlador implements Initializable {
     @FXML
     private TableView<Videojuego> tablaArticulos;
     @FXML
-    private TableColumn<Videojuego, String> colNombre;
-    @FXML
-    private TableColumn<Videojuego, String> colPlataforma;
-    @FXML
-    private TableColumn<Videojuego, String> colGenero;
+    private TableColumn<Videojuego, String> colNombre,colPlataforma, colGenero,colBandaSonora;
     @FXML
     private TableColumn<Videojuego, Date> colPublicado;
     @FXML
     private TableColumn<Videojuego, Double> colPrecio;
     @FXML
     private TableColumn<Videojuego, Integer> colVentas;
-    @FXML
-    private TableColumn<Videojuego, String> colBandaSonora;
     @FXML
     private ComboBox<String> comboBox;
 

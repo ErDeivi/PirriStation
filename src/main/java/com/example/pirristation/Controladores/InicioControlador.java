@@ -6,8 +6,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class InicioControlador {
@@ -67,17 +70,26 @@ public class InicioControlador {
     }
 
     private boolean validarCredenciales(String usuario, String password) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader("credenciales.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] credenciales = linea.split(",");
-                if (credenciales.length == 2 && 
-                    credenciales[0].equals(usuario) && 
-                    credenciales[1].equals(password)) {
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("credenciales.bin"))) {
+            while (dis.available() > 0) {
+                String usuarioArchivo = dis.readUTF();
+                String passwordArchivo = dis.readUTF();
+                
+                if (usuarioArchivo.equals(usuario) && passwordArchivo.equals(password)) {
                     return true;
                 }
             }
+        } catch (EOFException e) {
+            // Fin del archivo alcanzado
         }
         return false;
+    }
+
+    // Método auxiliar para escribir credenciales (puedes usarlo para configuración inicial)
+    private void escribirCredenciales(String usuario, String password) throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("credenciales.bin"))) {
+            dos.writeUTF(usuario);
+            dos.writeUTF(password);
+        }
     }
 }

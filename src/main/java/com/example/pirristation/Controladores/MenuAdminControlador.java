@@ -28,7 +28,7 @@ public class MenuAdminControlador {
     }
 
     public void cerrarSesionOnAction(ActionEvent actionEvent) {
-            App.setRoot("seleccionarUsuario");
+            App.setRoot("inicio");
 
     }
 

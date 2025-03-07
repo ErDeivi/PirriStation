@@ -48,40 +48,29 @@ public class CambiarContrasenaControlador {
     }
 
     private boolean actualizarContrasena(String contrasenaVieja, String contrasenaNueva) {
-        List<String> lineas = new ArrayList<>();
-        boolean contrasenaActualizada = false;
+        String usuarioGuardado = null;
+        String contrasenaGuardada = null;
 
-        // Primero leemos todo el archivo
-        try (BufferedReader reader = new BufferedReader(new FileReader("credenciales.txt"))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] credenciales = linea.split(",");
-                if (credenciales.length == 2) {
-                    if (credenciales[1].equals(contrasenaVieja)) {
-                        lineas.add(credenciales[0] + "," + contrasenaNueva);
-                        contrasenaActualizada = true;
-                    } else {
-                        lineas.add(linea);
-                    }
-                }
-            }
+        // Leer las credenciales actuales
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("credenciales.bin"))) {
+            usuarioGuardado = dis.readUTF();
+            contrasenaGuardada = dis.readUTF();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
 
-        // Si encontramos y actualizamos la contraseña, escribimos el archivo
-        if (contrasenaActualizada) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("credenciales.txt"))) {
-                for (String linea : lineas) {
-                    writer.write(linea);
-                    writer.newLine();
-                }
+        // Verificar si la contraseña vieja coincide
+        if (contrasenaGuardada != null && contrasenaGuardada.equals(contrasenaVieja)) {
+            // Escribir las nuevas credenciales
+            try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("credenciales.bin"))) {
+                dos.writeUTF(usuarioGuardado);
+                dos.writeUTF(contrasenaNueva);
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
-            return true;
         }
 
         return false;
