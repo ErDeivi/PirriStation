@@ -10,8 +10,8 @@ public class MenuAdminControlador {
         App.setRoot("listadoVideojuegos");
     }
 
-    public void gestionarDesarrolladoraOnAction(ActionEvent actionEvent) {
-            App.setRoot("crearDesarrolladora");
+    public void gestionarProgramadorOnAction(ActionEvent actionEvent) {
+            App.setRoot("listadoProgramadores");
     }
 
     public void gestionarBandaSonoraOnAction(ActionEvent actionEvent) {

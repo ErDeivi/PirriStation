@@ -32,6 +32,10 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+            </Button><Button fx:id="gestionarProgramador" mnemonicParsing="false" onAction="#gestionarProgramadorOnAction" prefHeight="36.0" prefWidth="200.0" text="Gestionar programadores">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </Button>
             <Button fx:id="gestionarBandaSonora" mnemonicParsing="false" onAction="#gestionarBandaSonoraOnAction" prefHeight="37.0" prefWidth="224.0" text="Gestionar bandas sonoras">
                <VBox.margin>

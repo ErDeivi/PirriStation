@@ -24,6 +24,10 @@ public class Videojuego {
         this.ventas = ventas;
     }
 
+    public Videojuego(int int1, String string) {
+        //TODO Auto-generated constructor stub
+    }
+
     public int getId() {
         return id;
     }

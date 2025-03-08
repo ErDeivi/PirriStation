@@ -12,11 +12,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.pirristation.Modelo.Programador;
 
 public class App extends Application {
 
     private static Stage primaryStage; // Almacenar el escenario principal
     private static Videojuego videojuegoModificar;
+    private static Programador programadorModificar;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,6 +56,14 @@ public class App extends Application {
 
     public static Videojuego getVideojuegoModificar() {
         return videojuegoModificar;
+    }
+
+    public static void setProgramadorModificar(Programador programador) {
+        programadorModificar = programador;
+    }
+
+    public static Programador getProgramadorModificar() {
+        return programadorModificar;
     }
 
 }
