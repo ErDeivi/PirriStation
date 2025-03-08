@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.pirristation.Modelo.BandaSonora;
 import com.example.pirristation.Modelo.Programador;
 
 public class App extends Application {
@@ -19,6 +21,7 @@ public class App extends Application {
     private static Stage primaryStage; // Almacenar el escenario principal
     private static Videojuego videojuegoModificar;
     private static Programador programadorModificar;
+    private static BandaSonora bandaSonoraModificar;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -64,6 +67,14 @@ public class App extends Application {
 
     public static Programador getProgramadorModificar() {
         return programadorModificar;
+    }
+
+    public static void setBandaSonoraModificar(BandaSonora bandaSonora) {
+        bandaSonoraModificar = bandaSonora;
+    }
+
+    public static BandaSonora getBandaSonoraModificar() {
+        return bandaSonoraModificar;
     }
 
 }
