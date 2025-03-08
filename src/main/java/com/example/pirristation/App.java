@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import com.example.pirristation.Modelo.BandaSonora;
 import com.example.pirristation.Modelo.Videojuego;
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +19,7 @@ public class App extends Application {
 
     private static Stage primaryStage; // Almacenar el escenario principal
     private static Videojuego videojuegoModificar;
+    private static BandaSonora bandaSonoraModificar;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,6 +57,14 @@ public class App extends Application {
 
     public static Videojuego getVideojuegoModificar() {
         return videojuegoModificar;
+    }
+
+    public static void setBandaSonoraModificar(BandaSonora bandaSonora) {
+        bandaSonoraModificar = bandaSonora;
+    }
+
+    public static BandaSonora getBandaSonoraModificar() {
+        return bandaSonoraModificar;
     }
 
 }

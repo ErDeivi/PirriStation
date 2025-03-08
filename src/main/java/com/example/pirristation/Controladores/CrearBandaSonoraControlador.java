@@ -50,7 +50,7 @@ public class CrearBandaSonoraControlador {
 
             } catch (SQLException e) {
                 mostrarMensaje(Alert.AlertType.ERROR, "Error",
-                        "Error al crear el videojuego: " + e.getMessage());
+                        "Error al crear la banda sonora: " + e.getMessage());
             } finally {
                 try {
                     if (rs != null)
