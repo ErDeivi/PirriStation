@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class ModificarVideojuegoControlador implements Initializable {
 
     @FXML
-    private TextField id,nombre,consola,genero,precio,ventas;
+    private TextField id, nombre, consola, genero, precio, ventas;
     @FXML
     private ComboBox<String> bandaSonora;
     @FXML
@@ -36,8 +36,8 @@ public class ModificarVideojuegoControlador implements Initializable {
     private void cargarBandasSonoras() {
         ObservableList<String> bandasSonoras = FXCollections.observableArrayList();
         try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT Nombre FROM BandaSonora")) {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT Nombre FROM videojuego")) {
 
             while (rs.next()) {
                 bandasSonoras.add(rs.getString("Nombre"));
@@ -46,7 +46,7 @@ public class ModificarVideojuegoControlador implements Initializable {
 
         } catch (SQLException e) {
             mostrarMensaje(Alert.AlertType.ERROR, "Error",
-                    "Error al cargar las bandas sonoras: " + e.getMessage());
+                    "Error al cargar los videojuegos: " + e.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class ModificarVideojuegoControlador implements Initializable {
             fechaPublicacion.setValue(((Date) videojuego.getPublicado()).toLocalDate());
             precio.setText(String.valueOf(videojuego.getPrecio()));
             ventas.setText(String.valueOf(videojuego.getVentas()));
-            
+
             // Cargar banda sonora actual
             cargarBandaSonoraActual();
         }
@@ -90,7 +90,7 @@ public class ModificarVideojuegoControlador implements Initializable {
                         "Género=?, Publicado=?, Precio=?, Ventas=?, " +
                         "BandaSonoraID=(SELECT ID FROM BandaSonora WHERE Nombre=?) " +
                         "WHERE ID=?";
-                
+
                 PreparedStatement pst = conn.prepareStatement(query);
                 pst.setString(1, nombre.getText());
                 pst.setString(2, consola.getText());
@@ -102,9 +102,9 @@ public class ModificarVideojuegoControlador implements Initializable {
                 pst.setInt(8, videojuego.getId());
 
                 int filasAfectadas = pst.executeUpdate();
-                
+
                 if (filasAfectadas > 0) {
-                    mostrarMensaje(Alert.AlertType.INFORMATION, "Éxito", 
+                    mostrarMensaje(Alert.AlertType.INFORMATION, "Éxito",
                             "Videojuego modificado correctamente");
                     volverOnAction(null);
                 }
@@ -117,28 +117,28 @@ public class ModificarVideojuegoControlador implements Initializable {
     }
 
     private boolean validarCampos() {
-        if (nombre.getText().isEmpty() || consola.getText().isEmpty() || 
-            genero.getText().isEmpty() || fechaPublicacion.getValue() == null || 
-            precio.getText().isEmpty() || ventas.getText().isEmpty()) {
-            
-            mostrarMensaje(Alert.AlertType.WARNING, "Campos incompletos", 
-                          "Por favor, rellene todos los campos obligatorios");
+        if (nombre.getText().isEmpty() || consola.getText().isEmpty() ||
+                genero.getText().isEmpty() || fechaPublicacion.getValue() == null ||
+                precio.getText().isEmpty() || ventas.getText().isEmpty()) {
+
+            mostrarMensaje(Alert.AlertType.WARNING, "Campos incompletos",
+                    "Por favor, rellene todos los campos obligatorios");
             return false;
         }
 
         try {
             Double.parseDouble(precio.getText());
         } catch (NumberFormatException e) {
-            mostrarMensaje(Alert.AlertType.WARNING, "Error de formato", 
-                          "El precio debe ser un número válido");
+            mostrarMensaje(Alert.AlertType.WARNING, "Error de formato",
+                    "El precio debe ser un número válido");
             return false;
         }
 
         try {
             Integer.parseInt(ventas.getText());
         } catch (NumberFormatException e) {
-            mostrarMensaje(Alert.AlertType.WARNING, "Error de formato", 
-                          "Las ventas deben ser un número entero");
+            mostrarMensaje(Alert.AlertType.WARNING, "Error de formato",
+                    "Las ventas deben ser un número entero");
             return false;
         }
 
