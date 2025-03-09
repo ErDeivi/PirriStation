@@ -28,8 +28,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        primaryStage = stage; // Inicializar el escenario principal
-        scene = new Scene(loadFXML("login"));
+        scene = new Scene(loadFXML("inicio"));
         stage.setTitle("PirriStation");
         stage.setScene(scene);
         stage.show();
