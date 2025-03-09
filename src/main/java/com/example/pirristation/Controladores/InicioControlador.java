@@ -29,6 +29,23 @@ public class InicioControlador {
         textoUsuario.setVisible(false);
         textoContrasena.setVisible(false);
         errorInicio.setVisible(false);
+        
+        // Crear credenciales por defecto si no existen
+        try {
+            if (!credencialesExisten()) {
+                escribirCredenciales("admin", "12345");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean credencialesExisten() {
+        try (DataInputStream dis = new DataInputStream(new FileInputStream("credenciales.bin"))) {
+            return dis.available() > 0;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     @FXML
@@ -85,11 +102,10 @@ public class InicioControlador {
         return false;
     }
 
-    // Método auxiliar para escribir credenciales (puedes usarlo para configuración inicial)
     private void escribirCredenciales(String usuario, String password) throws IOException {
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("credenciales.bin"))) {
             dos.writeUTF(usuario);
             dos.writeUTF(password);
         }
     }
-}
+} 

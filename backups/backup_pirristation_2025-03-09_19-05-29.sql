@@ -1,0 +1,153 @@
+-- MariaDB dump 10.19  Distrib 10.4.22-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: pirristation
+-- ------------------------------------------------------
+-- Server version	10.4.22-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `pirristation`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `pirristation`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `pirristation` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `pirristation`;
+
+--
+-- Table structure for table `bandasonora`
+--
+
+DROP TABLE IF EXISTS `bandasonora`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bandasonora` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Compositor` varchar(100) DEFAULT NULL,
+  `URL` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bandasonora`
+--
+
+LOCK TABLES `bandasonora` WRITE;
+/*!40000 ALTER TABLE `bandasonora` DISABLE KEYS */;
+INSERT INTO `bandasonora` VALUES (1,'The Legend of Zelda: Ocarina of Time Soundtrack','Koji Kondo','https://www.youtube.com/watch?v=Hy0aEj85ifY'),(2,'Final Fantasy VII Soundtrack','Nobuo Uematsu','https://www.youtube.com/watch?v=pCXV8HwB_Zo'),(3,'The Elder Scrolls V: Skyrim Soundtrack','Jeremy Soule','https://www.youtube.com/watch?v=aK_FuZMdwrU'),(4,'Halo: Combat Evolved Soundtrack','Martin O\'Donnell, Michael Salvatori','https://www.youtube.com/watch?v=Z5yVOFokLVY'),(5,'Minecraft Soundtrack','C418','https://www.youtube.com/watch?v=Dg0IjOzopYU'),(6,'Undertale Soundtrack','Toby Fox','https://www.youtube.com/watch?v=ZcoqR9Bwx1Y'),(7,'Super Mario 64 Soundtrack','Koji Kondo','https://www.youtube.com/watch?v=gEY7-NUIk0E'),(8,'The Witcher 3: Wild Hunt Soundtrack','Marcin Przybyłowicz, Mikolai Stroinski','https://www.youtube.com/watch?v=z4pPZ5BwO-U'),(9,'Red Dead Redemption 2 Soundtrack','Woody Jackson','https://www.youtube.com/watch?v=m96d_0h8G6I'),(10,'Grand Theft Auto V Soundtrack','Various Artists','https://www.youtube.com/watch?v=qWlU3-JPe_U');
+/*!40000 ALTER TABLE `bandasonora` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `programador`
+--
+
+DROP TABLE IF EXISTS `programador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `programador` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) NOT NULL,
+  `Apellido` varchar(50) NOT NULL,
+  `Localidad` varchar(50) DEFAULT NULL,
+  `Salario` decimal(10,2) DEFAULT NULL,
+  `DNI` varchar(15) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `DNI` (`DNI`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `programador`
+--
+
+LOCK TABLES `programador` WRITE;
+/*!40000 ALTER TABLE `programador` DISABLE KEYS */;
+INSERT INTO `programador` VALUES (1,'Ada','Lovelace','Londres',60000.00,'12345678A'),(2,'Charles','Babbage','Londres',70000.00,'87654321B'),(3,'Grace','Hopper','Nueva York',65000.00,'23456789C'),(4,'Alan','Turing','Londres',75000.00,'98765432D'),(5,'John','von Neumann','Budapest',80000.00,'34567890E'),(6,'Linus','Torvalds','Helsinki',90000.00,'11223344F'),(7,'Guido','van Rossum','Haarlem',85000.00,'55667788G'),(8,'Bjarne','Stroustrup','Aarhus',88000.00,'99001122H'),(9,'James','Gosling','Calgary',82000.00,'44556677I'),(10,'Dennis','Ritchie','Nueva York',78000.00,'88990011J');
+/*!40000 ALTER TABLE `programador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `videojuego`
+--
+
+DROP TABLE IF EXISTS `videojuego`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `videojuego` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Plataforma` varchar(50) DEFAULT NULL,
+  `Género` varchar(50) DEFAULT NULL,
+  `Publicado` date DEFAULT NULL,
+  `Precio` decimal(10,2) DEFAULT NULL,
+  `Ventas` int(11) DEFAULT NULL,
+  `BandaSonoraID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_BandaSonora` (`BandaSonoraID`),
+  CONSTRAINT `FK_BandaSonora` FOREIGN KEY (`BandaSonoraID`) REFERENCES `bandasonora` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `videojuego`
+--
+
+LOCK TABLES `videojuego` WRITE;
+/*!40000 ALTER TABLE `videojuego` DISABLE KEYS */;
+INSERT INTO `videojuego` VALUES (1,'The Legend of Zelda: Ocarina of Time','Nintendo 64','Action-Adventure','1998-11-21',59.99,7600000,1),(2,'Final Fantasy VII','PlayStation','RPG','1997-01-31',49.99,13250000,2),(3,'The Elder Scrolls V: Skyrim','PC, PlayStation 3, Xbox 360','Action RPG','2011-11-11',39.99,30000000,3),(4,'Halo: Combat Evolved','Xbox','First-Person Shooter','2001-11-15',29.99,8000000,4),(5,'Minecraft','Multiplataforma','Sandbox','2011-11-18',26.95,238000000,5),(6,'Undertale','PC, PlayStation 4, Nintendo Switch','RPG','2015-09-15',9.99,8000000,6),(7,'Super Mario 64','Nintendo 64','Platformer','1996-06-23',49.99,11900000,7),(8,'The Witcher 3: Wild Hunt','PC, PlayStation 4, Xbox One','Action RPG','2015-05-19',39.99,40000000,8),(9,'Red Dead Redemption 2','PlayStation 4, Xbox One, PC','Action-Adventure','2018-10-26',59.99,45000000,9),(10,'Grand Theft Auto V','Multiplataforma','Action-Adventure','2013-09-17',29.99,170000000,10);
+/*!40000 ALTER TABLE `videojuego` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `videojuego-programador`
+--
+
+DROP TABLE IF EXISTS `videojuego-programador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `videojuego-programador` (
+  `VideojuegoID` int(11) NOT NULL,
+  `ProgramadorID` int(11) NOT NULL,
+  `Fecha_Inicio` date DEFAULT NULL,
+  `Fecha_Fin` date DEFAULT NULL,
+  PRIMARY KEY (`VideojuegoID`,`ProgramadorID`),
+  KEY `ProgramadorID` (`ProgramadorID`),
+  CONSTRAINT `videojuego-programador_ibfk_1` FOREIGN KEY (`VideojuegoID`) REFERENCES `videojuego` (`ID`),
+  CONSTRAINT `videojuego-programador_ibfk_2` FOREIGN KEY (`ProgramadorID`) REFERENCES `programador` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `videojuego-programador`
+--
+
+LOCK TABLES `videojuego-programador` WRITE;
+/*!40000 ALTER TABLE `videojuego-programador` DISABLE KEYS */;
+INSERT INTO `videojuego-programador` VALUES (1,1,'1997-01-01','1998-11-01'),(1,3,'1997-01-01','1998-11-01'),(2,2,'1996-03-01','1997-01-01'),(2,5,'1996-03-01','1997-01-01'),(3,4,'2010-05-01','2011-11-01'),(3,6,'2010-05-01','2011-11-01'),(4,1,'2000-01-01','2001-11-01'),(4,7,'2000-01-01','2001-11-01'),(5,8,'2009-05-17','2011-11-18'),(6,9,'2013-06-01','2015-09-15'),(7,3,'1995-01-01','1996-06-01'),(7,5,'1995-01-01','1996-06-01'),(8,2,'2013-02-01','2015-05-01'),(8,4,'2013-02-01','2015-05-01'),(8,6,'2013-02-01','2015-05-01'),(9,3,'2017-03-22','2019-03-15'),(9,7,'2016-04-01','2018-10-01'),(9,8,'2016-04-01','2018-10-01'),(9,10,'2016-04-01','2018-10-01'),(10,1,'2011-09-01','2013-09-01'),(10,5,'2011-09-01','2013-09-01'),(10,9,'2011-09-01','2013-09-01');
+/*!40000 ALTER TABLE `videojuego-programador` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-03-09 19:05:29

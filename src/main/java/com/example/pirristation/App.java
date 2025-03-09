@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import com.example.pirristation.Modelo.Videojuego;
 import java.io.BufferedReader;
@@ -22,14 +23,14 @@ public class App extends Application {
     private static Videojuego videojuegoModificar;
     private static Programador programadorModificar;
     private static BandaSonora bandaSonoraModificar;
+    private static Scene scene;
+    private static Stage stage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        primaryStage = stage; // Inicializar el escenario principal
-
-        // Cargar la primera escena
-        setRoot("inicio"); // Cambiar a la vista de listados
-        stage.setTitle("App");
+        scene = new Scene(loadFXML("inicio"));
+        stage.setTitle("PirriStation");
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -39,16 +40,13 @@ public class App extends Application {
 
     public static void setRoot(String fxml) {
         try {
-            Parent root = loadFXML(fxml); // Cargar el nuevo FXML
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene); // Cambiar la escena del escenario principal
-            primaryStage.show();
+            scene.setRoot(loadFXML(fxml));
         } catch (IOException e) {
-            e.printStackTrace(); // Manejo de errores
+            e.printStackTrace();
         }
     }
 
-    public static Parent loadFXML(String fxml) throws IOException {
+    private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
@@ -77,4 +75,19 @@ public class App extends Application {
         return bandaSonoraModificar;
     }
 
+    public static void mostrarMensaje(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
+
+    public static void mostrarError(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
 }
