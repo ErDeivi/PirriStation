@@ -25,7 +25,7 @@ public class ListadoVideojuegosControlador implements Initializable {
     @FXML
     private TableView<Videojuego> tablaArticulos;
     @FXML
-    private TableColumn<Videojuego, String> colNombre,colPlataforma, colGenero,colBandaSonora;
+    private TableColumn<Videojuego, String> colNombre, colPlataforma, colGenero, colBandaSonora;
     @FXML
     private TableColumn<Videojuego, Date> colPublicado;
     @FXML
@@ -49,13 +49,13 @@ public class ListadoVideojuegosControlador implements Initializable {
         colPublicado.setCellValueFactory(new PropertyValueFactory<>("publicado"));
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
         colVentas.setCellValueFactory(new PropertyValueFactory<>("ventas"));
-        
+
         // Para la banda sonora necesitamos una consulta JOIN
         colBandaSonora.setCellValueFactory(cellData -> {
             try (Connection conn = DatabaseConnection.getConnection()) {
                 String query = "SELECT b.Nombre FROM BandaSonora b " +
-                             "JOIN Videojuego v ON v.BandaSonoraID = b.ID " +
-                             "WHERE v.ID = ?";
+                        "JOIN Videojuego v ON v.BandaSonoraID = b.ID " +
+                        "WHERE v.ID = ?";
                 PreparedStatement pst = conn.prepareStatement(query);
                 pst.setInt(1, cellData.getValue().getId());
                 ResultSet rs = pst.executeQuery();
@@ -112,14 +112,13 @@ public class ListadoVideojuegosControlador implements Initializable {
 
             while (rs.next()) {
                 Videojuego videojuego = new Videojuego(
-                    rs.getInt("ID"),
-                    rs.getString("Nombre"),
-                    rs.getString("Plataforma"),
-                    rs.getString("Género"),
-                    rs.getDate("Publicado"),
-                    rs.getDouble("Precio"),
-                    rs.getInt("Ventas")
-                );
+                        rs.getInt("ID"),
+                        rs.getString("Nombre"),
+                        rs.getString("Plataforma"),
+                        rs.getString("Género"),
+                        rs.getDate("Publicado"),
+                        rs.getDouble("Precio"),
+                        rs.getInt("Ventas"));
                 videojuegos.add(videojuego);
             }
 
@@ -129,9 +128,12 @@ public class ListadoVideojuegosControlador implements Initializable {
             System.out.println("Error al cargar los datos: " + e.getMessage());
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
+                if (rs != null)
+                    rs.close();
+                if (stmt != null)
+                    stmt.close();
+                if (conn != null)
+                    conn.close();
             } catch (SQLException e) {
                 System.out.println("Error al cerrar las conexiones: " + e.getMessage());
             }
@@ -140,20 +142,20 @@ public class ListadoVideojuegosControlador implements Initializable {
 
     private void configurarComboBox() {
         ObservableList<String> opciones = FXCollections.observableArrayList(
-            "Todos los videojuegos",
-            "Videojuegos por plataforma",
-            "Videojuegos más caros",
-            "Videojuegos más vendidos",
-            "Videojuegos más recientes",
-            "Videojuegos con banda sonora"
-        );
+                "Todos los videojuegos",
+                "Videojuegos por plataforma",
+                "Videojuegos más caros",
+                "Videojuegos más vendidos",
+                "Videojuegos más recientes",
+                "Videojuegos con banda sonora");
         comboBox.setItems(opciones);
     }
 
     public void ejecutarConsultaOnAction(ActionEvent actionEvent) {
         String seleccion = comboBox.getValue();
-        if (seleccion == null) return;
-        
+        if (seleccion == null)
+            return;
+
         ObservableList<Videojuego> videojuegos = FXCollections.observableArrayList();
         Connection conn = null;
         PreparedStatement pst = null;
@@ -171,39 +173,39 @@ public class ListadoVideojuegosControlador implements Initializable {
 
                 case "Videojuegos por plataforma":
                     query = "SELECT v.*, COUNT(*) as cantidad " +
-                           "FROM Videojuego v " +
-                           "GROUP BY Plataforma " +
-                           "ORDER BY Plataforma";
+                            "FROM Videojuego v " +
+                            "GROUP BY Plataforma " +
+                            "ORDER BY Plataforma";
                     pst = conn.prepareStatement(query);
                     break;
 
                 case "Videojuegos más caros":
                     query = "SELECT * FROM Videojuego " +
-                           "ORDER BY Precio DESC " +
-                           "LIMIT 5";
+                            "ORDER BY Precio DESC " +
+                            "LIMIT 5";
                     pst = conn.prepareStatement(query);
                     break;
 
                 case "Videojuegos más vendidos":
                     query = "SELECT * FROM Videojuego " +
-                           "ORDER BY Ventas DESC " +
-                           "LIMIT 5";
+                            "ORDER BY Ventas DESC " +
+                            "LIMIT 5";
                     pst = conn.prepareStatement(query);
                     break;
 
                 case "Videojuegos más recientes":
                     query = "SELECT * FROM Videojuego " +
-                           "WHERE Publicado IS NOT NULL " +
-                           "ORDER BY Publicado DESC " +
-                           "LIMIT 5";
+                            "WHERE Publicado IS NOT NULL " +
+                            "ORDER BY Publicado DESC " +
+                            "LIMIT 5";
                     pst = conn.prepareStatement(query);
                     break;
 
                 case "Videojuegos con banda sonora":
                     query = "SELECT v.*, b.Nombre as NombreBandaSonora " +
-                           "FROM Videojuego v " +
-                           "INNER JOIN BandaSonora b ON v.BandaSonoraID = b.ID " +
-                           "ORDER BY v.Nombre";
+                            "FROM Videojuego v " +
+                            "INNER JOIN BandaSonora b ON v.BandaSonoraID = b.ID " +
+                            "ORDER BY v.Nombre";
                     pst = conn.prepareStatement(query);
                     break;
             }
@@ -212,14 +214,13 @@ public class ListadoVideojuegosControlador implements Initializable {
 
             while (rs.next()) {
                 Videojuego videojuego = new Videojuego(
-                    rs.getInt("ID"),
-                    rs.getString("Nombre"),
-                    rs.getString("Plataforma"),
-                    rs.getString("Género"),
-                    rs.getDate("Publicado"),
-                    rs.getDouble("Precio"),
-                    rs.getInt("Ventas")
-                );
+                        rs.getInt("ID"),
+                        rs.getString("Nombre"),
+                        rs.getString("Plataforma"),
+                        rs.getString("Género"),
+                        rs.getDate("Publicado"),
+                        rs.getDouble("Precio"),
+                        rs.getInt("Ventas"));
                 videojuegos.add(videojuego);
             }
 
@@ -233,9 +234,12 @@ public class ListadoVideojuegosControlador implements Initializable {
             error.showAndWait();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (pst != null) pst.close();
-                if (conn != null) conn.close();
+                if (rs != null)
+                    rs.close();
+                if (pst != null)
+                    pst.close();
+                if (conn != null)
+                    conn.close();
             } catch (SQLException e) {
                 System.out.println("Error al cerrar las conexiones: " + e.getMessage());
             }
@@ -248,7 +252,7 @@ public class ListadoVideojuegosControlador implements Initializable {
 
     public void borrarVideojuegoOnAction(ActionEvent actionEvent) {
         Videojuego videojuegoSeleccionado = tablaArticulos.getSelectionModel().getSelectedItem();
-        
+
         if (videojuegoSeleccionado == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ningún videojuego seleccionado");
@@ -261,8 +265,8 @@ public class ListadoVideojuegosControlador implements Initializable {
         Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
         confirmacion.setTitle("Confirmar borrado");
         confirmacion.setHeaderText(null);
-        confirmacion.setContentText("¿Está seguro que desea borrar el videojuego " + 
-                                  videojuegoSeleccionado.getNombre() + "?");
+        confirmacion.setContentText("¿Está seguro que desea borrar el videojuego " +
+                videojuegoSeleccionado.getNombre() + "?");
 
         if (confirmacion.showAndWait().get() == ButtonType.OK) {
             Connection conn = null;
@@ -286,7 +290,7 @@ public class ListadoVideojuegosControlador implements Initializable {
                 int filasAfectadas = pstDeleteVideojuego.executeUpdate();
 
                 conn.commit(); // Confirmamos la transacción
-                
+
                 if (filasAfectadas > 0) {
                     cargarDatos();
                     Alert exito = new Alert(Alert.AlertType.INFORMATION);
@@ -298,7 +302,8 @@ public class ListadoVideojuegosControlador implements Initializable {
 
             } catch (SQLException e) {
                 try {
-                    if (conn != null) conn.rollback(); // Si hay error, deshacemos los cambios
+                    if (conn != null)
+                        conn.rollback(); // Si hay error, deshacemos los cambios
                 } catch (SQLException ex) {
                     System.out.println("Error al hacer rollback: " + ex.getMessage());
                 }
@@ -309,8 +314,10 @@ public class ListadoVideojuegosControlador implements Initializable {
                 error.showAndWait();
             } finally {
                 try {
-                    if (pstDeleteRelaciones != null) pstDeleteRelaciones.close();
-                    if (pstDeleteVideojuego != null) pstDeleteVideojuego.close();
+                    if (pstDeleteRelaciones != null)
+                        pstDeleteRelaciones.close();
+                    if (pstDeleteVideojuego != null)
+                        pstDeleteVideojuego.close();
                     if (conn != null) {
                         conn.setAutoCommit(true); // Restauramos el autocommit
                         conn.close();
@@ -324,7 +331,7 @@ public class ListadoVideojuegosControlador implements Initializable {
 
     public void modificarOnAction(ActionEvent actionEvent) {
         Videojuego videojuegoSeleccionado = tablaArticulos.getSelectionModel().getSelectedItem();
-        
+
         if (videojuegoSeleccionado == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ningún videojuego seleccionado");

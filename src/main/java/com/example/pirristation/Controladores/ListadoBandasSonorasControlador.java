@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -23,7 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ListadoBandasSonorasControlador {
+public class ListadoBandasSonorasControlador implements Initializable {
 
     @FXML
     private TableColumn<BandaSonora, String> colCompositor;
@@ -40,6 +41,7 @@ public class ListadoBandasSonorasControlador {
     @FXML
     private TableView<BandaSonora> tablaArticulos;
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarColumnas();
         cargarDatos();
@@ -119,15 +121,15 @@ public class ListadoBandasSonorasControlador {
                     break;
 
                 case "Banda sonora por compositor":
-                    query = "SELECT v.*, COUNT(*) as cantidad " +
-                            "FROM bandasonora v " +
+                    query = "SELECT bs.*, COUNT(*) as cantidad " +
+                            "FROM bandasonora bs " +
                             "GROUP BY Compositor " +
                             "ORDER BY Compositor";
                     pst = conn.prepareStatement(query);
                     break;
 
                 case "Bandas sonoras por orden alfabético":
-                    query = "SELECT * FROM Videojuego " +
+                    query = "SELECT * FROM bandasonora " +
                             "ORDER BY Nombre";
                     pst = conn.prepareStatement(query);
                     break;
@@ -166,11 +168,11 @@ public class ListadoBandasSonorasControlador {
         }
     }
 
-    public void nuevoVideojuegoOnAction(ActionEvent actionEvent) {
+    public void nuevaBandaSonoraOnAction(ActionEvent actionEvent) {
         App.setRoot("crearBandaSonora");
     }
 
-    public void borrarVideojuegoOnAction(ActionEvent actionEvent) {
+    public void borrarBandaSonoraOnAction(ActionEvent actionEvent) {
         BandaSonora bandaSonoraSeleccionada = tablaArticulos.getSelectionModel().getSelectedItem();
 
         if (bandaSonoraSeleccionada == null) {

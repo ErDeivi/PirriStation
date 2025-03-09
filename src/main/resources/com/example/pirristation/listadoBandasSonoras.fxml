@@ -33,7 +33,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#nuevaBandaSonoraOnAction" styleClass="opciones" text="Nuevo banda sonora">
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#nuevaBandaSonoraOnAction" styleClass="opciones" text="Nueva banda sonora">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>

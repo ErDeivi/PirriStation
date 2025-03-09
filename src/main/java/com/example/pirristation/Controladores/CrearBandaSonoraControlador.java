@@ -69,7 +69,7 @@ public class CrearBandaSonoraControlador {
 
     @FXML
     void volverOnAction(ActionEvent event) {
-        App.setRoot("menuAdmin");
+        App.setRoot("listadoBandasSonoras");
     }
 
     private boolean validarCampos() {
